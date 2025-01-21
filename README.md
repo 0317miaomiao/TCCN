@@ -1,7 +1,7 @@
 # How to calculate the number of conditions in the transcript space using the relevant code
 
 First through the **process_gene_data** function to process the transcript data, get arrays, gene_dict two data, and then in the **ComputeC** function to input the previously obtained arrays, 
-gene_dict data and their own choice of read_length, and finally will get a C matrix.
+gene_dict data and their own choice of read_length, and finally will get a C matrix. (Specific procedures and code can be through the **Example** of this jupyter notebook to learn.)
 
 For example, for the first example in the code, after processing by the **process_gene_data** function, we can get a list 
 
@@ -13,6 +13,8 @@ and a dictionary
 
 This corresponds to the composition of the transcript space of the gene, with the list indicating the position of the exon and the dictionary indicating the length of the corresponding exon. The composition of the transcript space is shown below:
 
+![示例图片](Image/figure_github.png)
 
 After getting the composition of the transcript we use the function ComputeC to calculate the number of conditions under different read lengths, the specific effect is shown in the figure below:
 
+![示例图片](Image/image_12.png)
