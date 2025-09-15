@@ -1,0 +1,16 @@
+name: tccn
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas=2.3.1
+  - numpy=2.2.5
+  - matplotlib=3.10.5
+  - scipy=1.15.3
+  - seaborn=0.13.2
+  - scikit-learn=1.7.1
+  - pip
+  - pip:
+    - brokenaxes==0.6.2
+    - sympy==1.14.0

@@ -1,7 +1,24 @@
 # How to calculate the number of conditions in the transcript space using the relevant code
 
-First through the **process_gene_data** function to process the transcript data, get arrays, gene_dict two data, and then in the **ComputeC** function to input the previously obtained arrays, 
-gene_dict data and their own choice of read_length, and finally will get a C matrix. (Specific procedures and code can be through the **Example** of this jupyter notebook to learn.)
+## ⚠️ Environment Setup Required
+
+**Important**: Before running the code, please set up the required environment. See [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) for detailed instructions.
+
+### Quick Setup
+```bash
+# Using conda (recommended)
+conda env create -f environment.yml
+conda activate tccn
+
+# Or using pip
+pip install -r requirements.txt
+```
+
+## Usage
+
+### TCCN Analysis
+
+First through the **process_gene_data** function to process the transcript data, get arrays and gene_dict, and then in the **ComputeC** function to input the previously obtained arrays, gene_dict data and their own choice of read_length, and finally will get a C matrix. (Specific procedures and code can be through the **Example** of this jupyter notebook to learn.)
 
 For example, for the first example in the code, after processing by the **process_gene_data** function, we can get a list 
 
@@ -22,3 +39,7 @@ After getting the composition of the transcript we use the function ComputeC to 
 In addition to this, we have also calculated the proportion of cases that conform to our model according to the above code, and the reference dataset is shown in (https://ftp.ensembl.org/pub/release-112/gtf/homo_sapiens/). The specific statistical results are shown in the following figure. A detailed description of the statistical methodology and results can be found in the paper accompanying the code.
 
 ![示例图片](Image/statistical_results.png)
+
+## Real Human Genome Data Processing
+
+For researchers interested in processing real human genome RNA-seq data, we provide comprehensive pipelines in the [Real_Data_Processing](Real_Data_Processing/) directory. These pipelines cover both short-read and long-read sequencing data processing using multiple quantification tools.
