@@ -37,7 +37,7 @@ After getting the composition of the transcript we use the function ComputeC to 
 ![示例图片](Image/image_12.png)
 
 More specifically, we employ graph theory and sliding window methods to compute the C matrix. The following two figures provide computational examples: first demonstrating the computational approach for fixed-length exons using graph theory, and then illustrating the sliding window method for the general case (solution for variable-length exons).
-For more detailed proofs, please refer to our paper or the process_getC.md file.
+For more detailed proofs, please refer to our paper or the [process_getC.md](process_getC.md/) file.
 ![示例图片](Image/image_13.png)
 ![示例图片](Image/image_14.png)
 
