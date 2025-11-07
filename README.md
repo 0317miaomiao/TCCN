@@ -43,7 +43,9 @@ For more detailed proofs, please refer to our paper or the [process_getC.md](pro
 
 In addition to this, we have also calculated the proportion of cases that conform to our model according to the above code, and the reference dataset is shown in (https://ftp.ensembl.org/pub/release-112/gtf/homo_sapiens/). The specific statistical results are shown in the following figure. A detailed description of the statistical methodology and results can be found in the paper accompanying the code.
 
-![示例图片](Image/statistical_results.png)
+<div align="center">
+<img src="Image/statistical_results.png" width="80%" alt="Statistical Results">
+</div>
 
 ## Real Human Genome Data Processing
 
