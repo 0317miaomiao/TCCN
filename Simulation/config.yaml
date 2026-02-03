@@ -1,0 +1,108 @@
+seed: 42
+output:
+    output_fastq: true
+    output_sam: true
+    output_bam: false
+    full_logs: false
+
+global_config:
+    samples:
+        '1':
+            barcodes: {{i5: AGCGCTAG, i7: AACCGCGG}}
+
+    molecule_maker_parameters:
+        min_polyA_tail_length: 0
+        max_polyA_tail_length: 5
+
+    resources:
+        reference_genome_fasta: {REF_FASTA_PATH}
+        pre_i5_adapter: AATGATACGGCGACCACCGAGATCTACAC
+        post_i5_adapter: ACACTCTTTCCCTACACGACGCTCTTCCGATCT
+        pre_i7_adapter: GATCGGAAGAGCACACGTCTGAACTCCAGTCAC
+        post_i7_adapter: ATCTCGTATGCCGTCTTCTGCTTG
+
+library_prep_pipeline:
+    input:
+        directory_path: input_data/
+        from_distribution_data:
+            '1':
+                num_packets: 1
+                num_molecules_per_packet: 5000
+                sample_data_directory: input_data/sample1/
+    steps:
+        - step_name: polya_step.PolyAStep
+          parameters:
+            breakpoint_prob_per_base: 0.0
+            max_retention_prob: 1.0
+            min_retention_prob: 0.0
+            min_polya_tail_length: 0
+            length_retention_prob: 0.05
+
+        - step_name: fragment_step.FragmentStep
+          parameters:
+            method: uniform
+            rate: 0.001
+            runtime: 1
+            min_frag_size: 350
+
+        - step_name: first_strand_synthesis_step.FirstStrandSynthesisStep
+          parameters:
+            perfect_priming: false
+            primes_per_kb: 50
+            position_probability_matrix:
+                A: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                C: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                G: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                T: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+
+        - step_name: second_strand_synthesis_step.SecondStrandSynthesisStep
+          parameters:
+            perfect_priming: false
+            primes_per_kb: 50
+            position_probability_matrix:
+                A: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                C: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                G: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+                T: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25]
+
+        - step_name: adapter_ligation_step.AdapterLigationStep
+          parameters: {{}}
+
+        - step_name: pcr_amplification_step.PCRAmplificationStep
+          parameters:
+            number_cycles: 5
+            retention_percentage: 10
+            gc_bias_constant: 1.0
+            gc_bias_linear: 0.0
+            gc_bias_quadratic: 0.0
+            deletion_rate: 0.0
+            insertion_rate: 0.0
+            substitution_rate: 0.0
+
+sequence_pipeline:
+    steps:
+        - step_name: bridge_amplification_step.BridgeAmplificationStep
+          parameters:
+            cycles: 10
+            substitution_rate: 0.0
+
+        - step_name: sequence_by_synthesis_step.SequenceBySynthesisStep
+          parameters:
+            read_length: 150
+            paired_ends: true
+            forward_is_5_prime: true
+            skip_rate: 0.0
+            drop_rate: 0.0
+
+    flowcell:
+        coordinate_strategy: random
+        lanes_to_use: [1]
+        flowcell_geometry:
+            min_lane: 1
+            max_lane: 8
+            min_tile: 1101
+            max_tile: 2228
+            min_x: 1012
+            max_x: 32816
+            min_y: 998
+            max_y: 49247
