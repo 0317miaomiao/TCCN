@@ -1,5 +1,11 @@
 # How to calculate the number of conditions in the transcript space using the relevant code
 
+## Citation
+
+If you use this code or the accompanying method in your research, please cite our paper:
+
+**Quantifying transcript complexity via the condition number of gene-specific random matrix**. *Briefings in Bioinformatics*, 27(2), bbag134. [https://doi.org/10.1093/bib/bbag134](https://doi.org/10.1093/bib/bbag134)
+
 ## ⚠️ Environment Setup Required
 
 **Important**: Before running the code, please set up the required environment. See [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) for detailed instructions.
